@@ -13,7 +13,9 @@
   outputs = { self, nixpkgs, flake-utils }:
   flake-utils.lib.eachDefaultSystem (system:
   let
-    pkgs = import nixpkgs { inherit system; };
+    pkgs = import nixpkgs {
+      inherit system;
+    };
     certora-cli = p: with p; [(
       buildPythonPackage rec {
         pname = "certora-cli";
@@ -36,15 +38,11 @@
       python3
       (python3.withPackages certora-cli)
       jdk
-      solc-select
     ];
   in {
     devInputs = devInputs;
     devShells.default = with pkgs; mkShell {
       buildInputs = devInputs;
-      shellHook = ''
-        export NIX_LD=${stdenv.cc.bintools.dynamicLinker};
-      '';
     };
   });
 }
