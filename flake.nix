@@ -19,10 +19,10 @@
     certora-cli = p: with p; [(
       buildPythonPackage rec {
         pname = "certora-cli";
-        version = "3.6.4";
+        version = "3.6.5";
         src = fetchPypi {
           inherit pname version;
-          sha256 = "sha256-gY0R10ULXura+E0tB1NWamik3NLD7MFPUY/hD3Xd3uM=";
+          sha256 = "sha256-gN1m/W4kPzaXp4je2DMmQmfOF9xe1J0YK1pR10BIkDI=";
         };
         doCheck = false;
         propagatedBuildInputs = with pkgs.python3Packages; [
